@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/omarchy/omarchy/main/schemas/plugin.json",
+  "schemaVersion": 1,
+  "id": "gian.omantfy",
+  "name": "Omantfy",
+  "version": "1.0.0",
+  "author": "gian",
+  "license": "MIT",
+  "description": "Subscribe to an ntfy topic and surface messages as Omarchy desktop notifications, with a bar widget and a recent-message panel.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "Omantfy",
+    "description": "Subscribe to an ntfy server/topic and show incoming messages as desktop notifications. Click the bell for recent messages and connection settings.",
+    "category": "Notifications",
+    "aliases": ["ntfy", "push", "subscribe"],
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "server": "https://ntfy.giandev.site",
+      "topic": "",
+      "token": "",
+      "notify": true,
+      "sound": true,
+      "soundFile": "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
+      "glyph": "󰂚",
+      "unreadColor": "#f5c542",
+      "maxMessages": 30
+    },
+    "schema": [
+      {
+        "key": "server",
+        "type": "string",
+        "label": "ntfy server",
+        "defaultValue": "https://ntfy.giandev.site",
+        "description": "Base URL of the ntfy server, e.g. https://ntfy.sh or your self-hosted instance."
+      },
+      {
+        "key": "topic",
+        "type": "string",
+        "label": "Topics",
+        "defaultValue": "",
+        "description": "One or more ntfy topics, comma-separated (e.g. alerts, releases). Leave empty to disable."
+      },
+      {
+        "key": "token",
+        "type": "string",
+        "label": "Access token",
+        "defaultValue": "",
+        "description": "Optional bearer token for protected topics."
+      },
+      {
+        "key": "notify",
+        "type": "boolean",
+        "label": "Desktop notifications",
+        "defaultValue": true,
+        "description": "Raise an Omarchy notification for each incoming message."
+      },
+      {
+        "key": "sound",
+        "type": "boolean",
+        "label": "Play a sound",
+        "defaultValue": true,
+        "description": "Play a sound for each incoming message (only on the primary screen)."
+      },
+      {
+        "key": "soundFile",
+        "type": "string",
+        "label": "Sound file",
+        "defaultValue": "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
+        "description": "Audio file played for each message, via pw-play."
+      },
+      {
+        "key": "glyph",
+        "type": "string",
+        "label": "Bar glyph",
+        "defaultValue": "󰂚",
+        "description": "Nerd Font glyph shown in the bar."
+      },
+      {
+        "key": "unreadColor",
+        "type": "string",
+        "label": "Unread colour",
+        "defaultValue": "#f5c542",
+        "description": "Bar glyph colour while there are unread messages. Normal foreground otherwise."
+      },
+      {
+        "key": "maxMessages",
+        "type": "integer",
+        "label": "Messages kept",
+        "min": 1,
+        "max": 200,
+        "step": 1,
+        "defaultValue": 30
+      }
+    ]
+  }
+}
