@@ -4,6 +4,15 @@ Subscribe to an [ntfy](https://ntfy.sh) topic from the Omarchy bar. Incoming
 messages become Omarchy desktop notifications, and the bar panel keeps a short
 history you can click through.
 
+## Install
+
+```bash
+omarchy plugin add https://github.com/gianmegantara/omantfy.git --enable --yes
+```
+
+Then click the bell, set your **Topics** (and **Access token** if your server
+requires auth), and **Save**.
+
 ## Usage
 
 - **Left click** the bell — open the recent-messages panel.
