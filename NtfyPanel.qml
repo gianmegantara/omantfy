@@ -29,7 +29,7 @@ KeyboardPanel {
   signal openUrl(string url)
 
   contentWidth: panel.fittedContentWidth(Style.space(360))
-  contentHeight: panel.fittedContentHeight(body.implicitHeight, Style.space(560))
+  contentHeight: panel.fittedContentHeight(body.implicitHeight, Style.space(620))
   focusTarget: keyCatcher
 
   readonly property real rowFillAlpha: 0.05
@@ -300,7 +300,7 @@ KeyboardPanel {
                   font.family: Style.font.family
                   font.pixelSize: Style.font.body
                   font.bold: true
-                  elide: Text.ElideRight
+                  wrapMode: Text.Wrap
                 }
 
                 Text {
@@ -311,8 +311,6 @@ KeyboardPanel {
                   font.family: Style.font.family
                   font.pixelSize: Style.font.bodySmall
                   wrapMode: Text.Wrap
-                  maximumLineCount: 4
-                  elide: Text.ElideRight
                 }
 
                 Text {
@@ -363,6 +361,9 @@ KeyboardPanel {
 
   readonly property real listHeight: {
     if (panel.messages.length === 0) return 0
-    return Math.min(Style.space(320), Math.max(Style.space(40), listColumn.implicitHeight))
+    // Leave room for the settings form when it is open; otherwise give the
+    // messages most of the panel. The Flickable scrolls either way.
+    var cap = panel.settingsOpen ? Style.space(260) : Style.space(440)
+    return Math.min(cap, Math.max(Style.space(40), listColumn.implicitHeight))
   }
 }
